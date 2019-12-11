@@ -1,0 +1,28 @@
+{
+  "name": "front-end-wiki",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "devDependencies": {
+    "vuepress": "^1.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heiyelin/front-end-wiki.git"
+  },
+  "keywords": [
+    "frontend"
+  ],
+  "author": "Alin.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/heiyelin/front-end-wiki/issues"
+  },
+  "homepage": "https://github.com/heiyelin/front-end-wiki#readme",
+  "description": "personal frontend sysyem"
+}
