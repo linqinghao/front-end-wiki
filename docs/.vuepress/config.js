@@ -1,4 +1,5 @@
 module.exports = {
+  base: '/front-end-wiki/',
   title: 'Front-End-Wiki',
   description: '前端知识库',
   // permalink: '/:year/:month/:day/:slug', // 永久链接
