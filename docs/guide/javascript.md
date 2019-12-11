@@ -1,10 +1,66 @@
+# Javascript
+
 ## 变量与类型
 
-### 变量在内存中的存储形式
+### js 变量在内存中的存储形式
 
-### Javascirpt 中的数据类型
+在 js 中，变量分为**基本类型**和**引用类型**。基本类型是保存在栈内存中的简单数据段，它们的值都有**固定的大小**，保存在**栈空间**，通过**按值访问**。引用类型是保存在堆内存中的对象，**值大小不固定**，栈内存中存放的该对象的访问地址指向堆内存中的对象，js 中不允许直接访问堆内存中的为止。因此操作对象时，实际操作对象的引用，
+
+### js 的数据类型
+
+js 有 7 种数据类型：
+
+- `number` 类型：整数或浮点数。依据 IEEE 754 标准，使用的是 64 位双精度浮点数存储。
+- `string` 字符串：由一组 UTF16 编码组成，范围在 0~65536(U+0000 ~U+FFFF)之间。
+- `boolean` 布尔值：二元判断，只有`true`和`false`
+- `null`: 无、未知
+- `undefined`: 表示未定义。不是保留字，内层作用域可以被覆写。
+- `symbol`: 用于唯一的标识符。
+- `object` 对象：一般是键值对的形式。
+
+::: tip 提示
+`function` 是一种数据类型吗？
+根据 spec 规范，它不是。虽然 `typeof function() {}; // function`，但是`typeof`是一个运算符，其返回值不能作为 js 类型系统的依据。`function`比较特殊，它同样具有`object`的特性。
+:::
 
 ### 基本类型的拆箱与装箱操作
+
+#### **装箱**
+
+装箱，是指将基本类型转换为对应的引用类型的操作。分为**显式装箱**和**隐式装箱**。
+
+1. 隐式装箱
+
+```js
+var s1 = 'alin';
+var s2 = s1.substring(2);
+```
+
+上述代码的执行步骤：
+
+- 创建 `String`类型的一个实例
+- 在实例中调用该方法
+- 销毁该实例
+
+2. 显式装箱
+
+通过**基本包装类型对象**对基本类型进行显示装箱。
+
+```js
+var str = new String('alin');
+```
+
+显式装箱可以对 `new` 出来的对象进行属性和方法的添加。
+
+因为通过`new`操作符创建的引用类型的实例，在执行流离开当前作用域之间会一直保留在内存中。
+
+#### **拆箱**
+
+拆箱，是指把引用类型转换为基本类型。通过引用类型的 `valueOf()` 和 `toString`方法实现。
+
+在 js 标准中，规定了 `ToPrimitive`方法，它是对象类型到基本类型转换的实现者。
+
+对象到 String 和 Number 的转换遵循“先拆箱后转换”的规则。
 
 ### null 与 undefined 的区别
 
@@ -670,7 +726,9 @@ function _possibleConstructorReturn(self, call) {
 // 继承
 function _inherits(subClass, superClass) {
   if (typeof superClass !== 'function' && superClass !== null) {
-    throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);
+    throw new TypeError(
+      'Super expression must either be null or a function, not ' + typeof superClass
+    );
   }
   subClass.prototype = Object.create(superClass && superClass.prototype, {
     constructor: {
@@ -680,7 +738,10 @@ function _inherits(subClass, superClass) {
       configurable: true,
     },
   });
-  if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : (subClass.__proto__ = superClass);
+  if (superClass)
+    Object.setPrototypeOf
+      ? Object.setPrototypeOf(subClass, superClass)
+      : (subClass.__proto__ = superClass);
 }
 
 function _classCallCheck(instance, Constructor) {
@@ -721,7 +782,10 @@ var Child = (function(_Parent) {
   function Child(name, age) {
     _classCallCheck(this, Child);
 
-    return _possibleConstructorReturn(this, (Child.__proto__ || Object.getPrototypeOf(Child)).call(this, name, age));
+    return _possibleConstructorReturn(
+      this,
+      (Child.__proto__ || Object.getPrototypeOf(Child)).call(this, name, age)
+    );
   }
 
   _createClass(Child, [

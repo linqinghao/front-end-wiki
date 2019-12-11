@@ -1,10 +1,4 @@
-## HTML
-
-> 超文本标记语言（英语：HyperText Markup Language，简称：HTML）是一种用于创建网页的标准标记语言。HTML 是一种基础技术，常与`CSS`、`JavaScript`一起被众多网站用于设计网页、网页应用程序以及移动应用程序的用户界面。网页浏览器可以读取 HTML 文件，并将其渲染成可视化网页。HTML 描述了一个网站的结构语义随着线索的呈现，使之成为一种标记语言而非编程语言。
-
-HTML 元素是构建网站的基石。HTML 允许嵌入图像与对象，并且可以用于创建交互式表单，它被用来结构化信息——例如标题、段落和列表等等，也可用来在一定程度上描述文档的外观和语义。HTML 的语言形式为尖括号包围的 HTML 元素（如\<html\>），浏览器使用 HTML 标签和脚本来诠释网页内容，但不会将它们显示在页面上。
-
-HTML 可以嵌入如 JavaScript 的脚本语言，它们会影响 HTML 网页的行为。网页浏览器也可以引用层叠样式表（CSS）来定义文本和其它元素的外观与布局。维护 HTML 和 CSS 标准的组织万维网联盟（W3C）鼓励人们使用 CSS 替代一些用于表现的 HTML 元素。
+# HTML
 
 ## HTML5 规范新特性
 
@@ -65,8 +59,7 @@ meta 标签提供关于 HTML 文档的元数据。它不会显示在页面上，
 - charset: 声明文档使用的字符编码
 
 ```html
-<meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta charset="utf-8" /> <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 ```
 
 - SEO 优化
@@ -116,7 +109,10 @@ content 参数： - width viewport 宽度(数值/device-width) - height viewport
 
 <!-- apple iOS -->
 <!-- Smart App Banner -->
-<meta name="apple-itunes-app" content="app-id=APP_ID,affiliate-data=AFFILIATE_ID,app-argument=SOME_TEXT" />
+<meta
+  name="apple-itunes-app"
+  content="app-id=APP_ID,affiliate-data=AFFILIATE_ID,app-argument=SOME_TEXT"
+/>
 <!-- 禁止自动探测并格式化手机号码 -->
 <meta name="format-detection" content="telephone=no" />
 <!-- Add to Home Screen添加到主屏 -->
@@ -143,7 +139,10 @@ content 参数： - width viewport 宽度(数值/device-width) - height viewport
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 <meta name="apple-mobile-web-app-capable" content="yes" /><!-- 删除苹果默认的工具栏和菜单栏 -->
 <meta name="apple-mobile-web-app-status-bar-style" content="black" /><!-- 设置苹果工具栏颜色 -->
-<meta name="format-detection" content="telphone=no, email=no" /><!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+<meta
+  name="format-detection"
+  content="telphone=no, email=no"
+/><!-- 忽略页面中的数字识别为电话，忽略email识别 -->
 <!-- 启用360浏览器的极速模式(webkit) -->
 <meta name="renderer" content="webkit" />
 <!-- 避免IE使用兼容模式 -->

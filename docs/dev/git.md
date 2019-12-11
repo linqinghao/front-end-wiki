@@ -1,6 +1,7 @@
-
+# Git 常用操作
 
 ## Git 配置
+
 1. 设定 用户名／电子邮件地址
 
 ```bash
@@ -21,7 +22,7 @@ $ git config --global color.ui true
 ```bash
 $ git config --global alias.<aliasname> <command>
 ```
-  
+
 4. 显示设定菜单
 
 ```bash
@@ -29,7 +30,8 @@ $ git config --global list
 ```
 
 ## 基本操作
-1. 将当前目录初始化为 git 数据库  
+
+1. 将当前目录初始化为 git 数据库
 
 ```bash
 $ git init
@@ -87,12 +89,14 @@ $ git rm [filename]
 ```bash
 $ git clean -f
 ```
+
 10. 删除未跟踪的文件及目录
 
 ```bash
 $ git clean -fd
 ```
-11. 删除未跟踪的文件及目录，包含gitignore的文件/目录
+
+11. 删除未跟踪的文件及目录，包含 gitignore 的文件/目录
 
 ```bash
 $ git clean -xfd
@@ -106,9 +110,11 @@ $ git clean -nxfd
 $ git clean -nf
 $ git clean -nfd
 ```
-::: 
+
+:::
 
 ## 标签
+
 1. 添加标签
 
 ```bash
@@ -121,8 +127,8 @@ $ git tag [tagName]
 $ git push origin [tagName]
 ```
 
-
 ## 撤销
+
 1. 撤销本地修改
 
 ```bash
@@ -130,13 +136,14 @@ $ git checkout -- [filename]
 $ git checkout -- .
 ```
 
-2. 重置暂存区和工作区，与上一次commit保持一致
+2. 重置暂存区和工作区，与上一次 commit 保持一致
 
 ```bash
 $ git reset --hard ［filename］
 ```
 
 ## 分支
+
 1. 创建分支
 
 ```bash
@@ -174,6 +181,7 @@ $ git branch
 ```
 
 ## 远程同步
+
 1. 添加远程库
 
 ```bash
@@ -185,7 +193,7 @@ $ git remote add origin git@github.com:yourname/yourrepoistry.git
 ```bash
 # 第一次push使用 -u，将本地的master分支与远程的master分支关联起来，以后推送或拉取就可以简化命令
 $ git push -u origin master
-$ git push origin master 
+$ git push origin master
 ```
 
 3. 克隆现有的远程数据库
@@ -213,6 +221,7 @@ $ git pull [remote]
 ```
 
 ## 其他
+
 1. 忽略文件
 
 ```bash
@@ -225,13 +234,12 @@ $ git ignore [file]
 
 原因:
 
-git 合并命令拒绝合并没有共同祖先的历史。换言之，就是本地仓库和远程仓库提交历史不一致，没有共同的祖先commit。对此，git 的官方文档是这样描述的：
+git 合并命令拒绝合并没有共同祖先的历史。换言之，就是本地仓库和远程仓库提交历史不一致，没有共同的祖先 commit。对此，git 的官方文档是这样描述的：
 
 > By default, git merge command refuses to merge histories that do not share a common ancestor. This option can be used to override this safety when merging histories of two projects that started their lives independently. As that is a very rare occasion, no configuration variable to enable this by default exists and will not be added.
-
 
 解决方法：
 
 ```bash
-$ git pull origin master --allow-unrelated-histories 
+$ git pull origin master --allow-unrelated-histories
 ```
