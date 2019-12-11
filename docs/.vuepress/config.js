@@ -6,9 +6,9 @@ module.exports = {
     nav: [
       { text: '首页', link: '/' },
       { text: '指南', link: '/guide/' },
-      { text: '进阶', link: '/advance/' },
-      { text: '工具与运维', link: '/dev/' },
-      { text: '参考', link: '/refer/' },
+      { text: '进阶', link: '/advance/browser/' },
+      { text: '工具与运维', link: '/dev/git/' },
+      { text: '扩展', link: '/refer/' },
     ],
     sidebar: {
       '/guide/': [
@@ -16,45 +16,28 @@ module.exports = {
           title: '指南',
           collapsable: false,
           sidebarDepth: 2,
-          children: [
-            'html', 'css', 'javascript'
-          ],
+          children: ['', 'html', 'css', 'javascript'],
         },
       ],
       '/advance/': [
         {
           title: '进阶',
           collapsable: false,
-          sidebarDepth: 2,
-          children: [
-            ['/advance/frontend/', '前端与浏览器'],
-            ['/advance/performance/', '前端性能优化'],
-            ['/advance/nodejs/', 'Node.js'],
-            ['/advance/algorithm/', '数据结构与算法'],
-            ['/advance/design-pattern/', '设计模式'],
-          ],
+          children: ['browser', 'performance', 'algorithm', 'design-pattern'],
         },
       ],
       '/dev/': [
         {
-          title: '运维',
+          title: '开发',
           collapsable: false,
-          sidebarDepth: 2,
-          children: [
-            ['/op/git/', 'Git'],
-            ['/op/nginx/', 'Nginx'],
-            ['/op/linux/', '常用 linux 命令'],
-          ],
+          children: ['git', 'plugin'],
         },
         {
-          title: '工具',
-          sidebarDepth: 2,
-          children: [
-            ['/tool/', 'VSCode'],
-            ['/tool/', 'Chrome'],
-          ],
+          title: '运维',
+          children: ['common-use-linux'],
         },
       ],
+      '/refer/': [''],
       // fallback
       '/': ['', 'guide', 'advance', 'dev', 'refer'],
     },
@@ -63,4 +46,5 @@ module.exports = {
   markdown: {
     lineNumbers: true,
   },
+  plugins: ['@vuepress/medium-zoom'],
 };

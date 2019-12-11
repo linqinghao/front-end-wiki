@@ -6,6 +6,7 @@
     "doc": "docs"
   },
   "devDependencies": {
+    "@vuepress/plugin-medium-zoom": "^1.2.0",
     "vuepress": "^1.2.0"
   },
   "scripts": {
