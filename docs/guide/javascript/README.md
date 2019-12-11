@@ -447,16 +447,16 @@ console.log(o);
 
 1. 详细过程:
 
-a. 创建 ECMAScript 原生对象 `obj`;
-b. 给`obj`设置原生对象的内部属性;（和原型属性不用，内部属性表示为`[[PropertyName]]`，两个方括号包裹属性名，并且属性名大写，比如常见 `[[Prototype]]`、`[[Constructor]]`）;
-c. 设置 `obj` 的内部属性 [`[Class]]`为 `Object`；
-d. 设置 `obj` 的内部属性 `[[Extensible]]` 为 `true`；
-e. 将`proto`的值设置为 `F` 的 `prototype` 属性值；
-f. 如果 proto 是对象类型，则设置 obj 的内部属性 `[[Prototype]]`值为 `proto`；（进行原型链关联，实现继承的关键）
-g. 如果`proto`不是对象类型，则设置`obj`的内部属性`[[Prototype]]`值为内建构造函数 `Object` 的 `prototype` 值；（函数 `prototype` 属性可以被改写，如果改成非对象类型，obj 的 `[[Prototype]]`就指向 `Object` 的原型对象）
-h. 调用函数`F`，将其返回值赋给 result；其中， `F`  执行时的实参为传递给`[[Construct]]`（即 `F`  本身） 的参数， `F`  内部`this`指向`obj`；
-i. 如果 result 是`Object`类型，返回 result；
-j. 如果 F 返回的不是对象类型（第 h 步不成立），则返回创建的对象`obj`。
+- 创建 ECMAScript 原生对象 `obj`;
+- 给`obj`设置原生对象的内部属性;（和原型属性不用，内部属性表示为`[[PropertyName]]`，两个方括号包裹属性名，并且属性名大写，比如常见 `[[Prototype]]`、`[[Constructor]]`）;
+- 设置 `obj` 的内部属性 [`[Class]]`为 `Object`；
+- 设置 `obj` 的内部属性 `[[Extensible]]` 为 `true`；
+- 将`proto`的值设置为 `F` 的 `prototype` 属性值；
+- 如果 proto 是对象类型，则设置 obj 的内部属性 `[[Prototype]]`值为 `proto`；（进行原型链关联，实现继承的关键）
+- 如果`proto`不是对象类型，则设置`obj`的内部属性`[[Prototype]]`值为内建构造函数 `Object` 的 `prototype` 值；（函数 `prototype` 属性可以被改写，如果改成非对象类型，obj 的 `[[Prototype]]`就指向 `Object` 的原型对象）
+- 调用函数`F`，将其返回值赋给 result；其中， `F`  执行时的实参为传递给`[[Construct]]`（即 `F`  本身） 的参数， `F`  内部`this`指向`obj`；
+- 如果 result 是`Object`类型，返回 result；
+- 如果 F 返回的不是对象类型（第 h 步不成立），则返回创建的对象`obj`。
 
 2. 简洁描述：
 
