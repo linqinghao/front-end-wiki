@@ -15,10 +15,17 @@ module.exports = {
     sidebar: {
       '/guide/': [
         {
-          title: '指南',
+          title: 'HTML',
           collapsable: false,
-          sidebarDepth: 2,
-          children: ['', 'html', 'css', 'javascript'],
+          children: ['html/introduce'],
+        },
+        {
+          title: 'CSS',
+          children: ['css/css-base'],
+        },
+        {
+          title: 'Javascript',
+          children: ['js/variables-and-types', 'js/scope-and-closure', 'js/js-run-mechanism', 'js/grammar-and-api'],
         },
       ],
       '/advance/': [
