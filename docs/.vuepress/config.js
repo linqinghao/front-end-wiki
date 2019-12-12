@@ -25,7 +25,13 @@ module.exports = {
         },
         {
           title: 'Javascript',
-          children: ['js/variables-and-types', 'js/scope-and-closure', 'js/js-run-mechanism', 'js/grammar-and-api'],
+          children: [
+            'js/variables-and-types',
+            'js/prototype',
+            'js/scope-and-closure',
+            'js/js-run-mechanism',
+            'js/grammar-and-api',
+          ],
         },
       ],
       '/advance/': [
