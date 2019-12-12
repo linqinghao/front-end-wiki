@@ -70,17 +70,13 @@ module.exports = {
       },
     ],
     [
-      'gitalk-maker',
+      '@vssue/vuepress-plugin-vssue',
       {
-        gitalkConfig: {
-          clientID: '2f2d8147f5bae91392e0',
-          clientSecret: '0b9895d80de996ec351fd25799f716100ec77428',
-          repo: 'front-end-wiki',
-          owner: 'heiyelin',
-          admin: ['heiyelin'],
-          // id: location.pathname, // 无法配置默认用 location.pathname
-          distractionFreeMode: false, // Facebook-like distraction free mode
-        },
+        platform: 'github',
+        clientId: '2f2d8147f5bae91392e0',
+        clientSecret: '0b9895d80de996ec351fd25799f716100ec77428',
+        repo: 'front-end-wiki',
+        owner: 'heiyelin',
       },
     ],
   ],
