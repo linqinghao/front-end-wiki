@@ -827,3 +827,6 @@ subClass.prototype.constructor = subClass;
 ### Promise 原理与模拟实现
 
 ### Javascript 中的高阶函数
+
+
+<Vssue title="Vssue" />
