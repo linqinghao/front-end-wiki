@@ -3,11 +3,13 @@ module.exports = {
   description: '前端知识库',
   // permalink: '/:year/:month/:day/:slug', // 永久链接
   themeConfig: {
+    author: 'Alin',
+    smoothScroll: true,
     nav: [
       { text: '首页', link: '/' },
       { text: '指南', link: '/guide/' },
-      { text: '进阶', link: '/advance/browser/' },
-      { text: '工具与运维', link: '/dev/git/' },
+      { text: '进阶', link: '/advance/' },
+      { text: '工具与运维', link: '/dev/' },
       { text: '扩展', link: '/refer/' },
     ],
     sidebar: {
@@ -38,13 +40,48 @@ module.exports = {
         },
       ],
       '/refer/': [''],
-      // fallback
-      '/': ['', 'guide', 'advance', 'dev', 'refer'],
+      '/': [''],
     },
-    lastUpdated: '上次更新',
+    lastUpdated: '修订于',
   },
   markdown: {
     lineNumbers: true,
   },
-  plugins: ['@vuepress/medium-zoom'],
+  plugins: [
+    [
+      '@vuepress/last-updated',
+      {
+        transformer: (timestamp, lang) => {
+          const dayjs = require('dayjs');
+          return dayjs(timestamp).format('YYYY-MM-DD HH:mm:ss');
+        },
+      },
+    ],
+    '@vuepress/medium-zoom',
+    '@vuepress/back-to-top',
+    [
+      'seo',
+      {
+        siteTitle: (_, $site) => $site.title,
+        title: $page => $page.title,
+        description: $page => $page.frontmatter.description,
+        author: (_, $site) => $site.themeConfig.author,
+        tags: $page => $page.frontmatter.tags,
+      },
+    ],
+    [
+      'gitalk-maker',
+      {
+        gitalkConfig: {
+          clientID: '2f2d8147f5bae91392e0',
+          clientSecret: '0b9895d80de996ec351fd25799f716100ec77428',
+          repo: 'front-end-wiki',
+          owner: 'heiyelin',
+          admin: ['heiyelin'],
+          // id: location.pathname, // 无法配置默认用 location.pathname
+          distractionFreeMode: false, // Facebook-like distraction free mode
+        },
+      },
+    ],
+  ],
 };

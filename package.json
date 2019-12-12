@@ -6,8 +6,11 @@
     "doc": "docs"
   },
   "devDependencies": {
+    "@vuepress/plugin-back-to-top": "^1.2.0",
     "@vuepress/plugin-medium-zoom": "^1.2.0",
-    "vuepress": "^1.2.0"
+    "vuepress": "^1.2.0",
+    "vuepress-plugin-gitalk-maker": "^0.1.0",
+    "vuepress-plugin-seo": "^0.1.2"
   },
   "scripts": {
     "docs:dev": "vuepress dev docs",
@@ -26,5 +29,8 @@
     "url": "https://github.com/heiyelin/front-end-wiki/issues"
   },
   "homepage": "https://github.com/heiyelin/front-end-wiki#readme",
-  "description": "personal frontend sysyem"
+  "description": "personal frontend sysyem",
+  "dependencies": {
+    "dayjs": "^1.8.17"
+  }
 }
