@@ -21,7 +21,7 @@ module.exports = {
         },
         {
           title: 'CSS',
-          children: ['css/css-base'],
+          children: ['css/base', 'css/layout', 'css/center-and-layout'],
         },
         {
           title: 'Javascript',
@@ -31,6 +31,10 @@ module.exports = {
             'js/scope-and-closure',
             'js/js-run-mechanism',
             'js/grammar-and-api',
+            'js/generator',
+            'js/promise',
+            'js/async',
+            'js/high-order-function'
           ],
         },
       ],
