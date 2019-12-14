@@ -34,7 +34,7 @@ module.exports = {
             'js/generator',
             'js/promise',
             'js/async',
-            'js/high-order-function'
+            'js/high-order-function',
           ],
         },
       ],
@@ -42,7 +42,19 @@ module.exports = {
         {
           title: '进阶',
           collapsable: false,
-          children: ['browser', 'performance', 'algorithm', 'design-pattern'],
+          children: ['browser', 'performance', 'design-pattern'],
+        },
+        {
+          title: '数据结构与算法',
+          children: [
+            'data-structure/Stack',
+            'data-structure/Queue',
+            'data-structure/LinkedList',
+            'data-structure/Set',
+            'data-structure/Dictionary',
+            'data-structure/HashTable',
+            'data-structure/Tree',
+          ],
         },
       ],
       '/dev/': [
