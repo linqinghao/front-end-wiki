@@ -45,7 +45,7 @@ class Dictionary {
   }
 
   get(key) {
-    return this.hasKey[key] ? this.dict[key] : undefined;
+    return this.hasKey(key) ? this.dict[key] : undefined;
   }
 
   clear() {
