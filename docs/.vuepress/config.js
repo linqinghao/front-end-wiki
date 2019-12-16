@@ -54,6 +54,7 @@ module.exports = {
             'data-structure/Dictionary',
             'data-structure/HashTable',
             'data-structure/Tree',
+            'data-structure/Graph',
           ],
         },
       ],
