@@ -5,6 +5,7 @@ module.exports = {
   themeConfig: {
     author: 'Alin',
     smoothScroll: true,
+    repo: 'heiyelin/front-end-wiki',
     nav: [
       { text: '首页', link: '/' },
       { text: '指南', link: '/guide/' },
