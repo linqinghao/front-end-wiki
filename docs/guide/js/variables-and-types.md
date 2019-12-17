@@ -244,6 +244,20 @@ Object.prototype.toString.call(new Error()); // "[Object Error]"
 
 ## 隐式转换
 
+由于 Javascript 是一门弱类型语言，因此在不同类型的变量之间相互运算时常常会发生**隐式转换**。Javascript 中的隐式转换常用的主要有三种： `ToPrimitive`，`ToNumber`，`ToString`。
+
+- `ToPrimitive`： 将引用类型转换原始类型时候会发生调用，上面拆箱中已经介绍过了。
+- `ToNumber`：转换为 Number 类型， 常发生在自增、自减、数学运算符等。
+- `ToString`：转换为 String 类型，常发生在 + 连接字符串、引用类型比较等。
+
+### ToNumber
+
+![隐式转换-ToNumber-2019-12-17.png](https://allin-bucket.oss-cn-beijing.aliyuncs.com/blog/隐式转换-ToNumber-2019-12-17.png?x-oss-process=style/alin)
+
+### ToString
+
+![隐式转换-ToString-2019-12-17.png](https://allin-bucket.oss-cn-beijing.aliyuncs.com/blog/隐式转换-ToString-2019-12-17.png?x-oss-process=style/alin)
+
 ## 精度缺失及解决办法
 
 ### 双精度浮点数
@@ -254,7 +268,7 @@ js 是使用 64 位双精度浮点数存储数值的，其采用的是 IEEE754 �
 
 ![ieee754-2019-12-12.png](https://allin-bucket.oss-cn-beijing.aliyuncs.com/blog/ieee754-2019-12-12.png?x-oss-process=style/alin)
 
-正如上图 ，64 位双精度浮点数是用 1 位符号位 S， 11 位指数 E，52 位有效数字 M 来表示的。并且一个浮点数可以使用公式表示如下：
+正如上图所示，64 位双精度浮点数是用 1 位符号位 S， 11 位指数 E，52 位有效数字 M 来表示的。并且一个浮点数可以使用公式表示如下：
 
 ```
 V = (-1)^S * M * 2 ^ E
