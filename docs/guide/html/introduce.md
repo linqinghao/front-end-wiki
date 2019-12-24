@@ -1,4 +1,4 @@
-# 介绍
+# HTML5
 
 ## HTML5 规范新特性
 
@@ -83,14 +83,14 @@ meta 标签提供关于 HTML 文档的元数据。它不会显示在页面上，
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 ```
 
-content 参数： 
+content 参数：
 
-  - width viewport 宽度(数值/device-width) 
-  - height viewport 高度(数值/device-height) 
-  - initial-scale 初始缩放比例 
-  - maximum-scale 最大缩放比例 
-  - minimum-scale 最小缩放比例 
-  - user-scalable 是否允许用户缩放(yes/no)
+- width viewport 宽度(数值/device-width)
+- height viewport 高度(数值/device-height)
+- initial-scale 初始缩放比例
+- maximum-scale 最大缩放比例
+- minimum-scale 最小缩放比例
+- user-scalable 是否允许用户缩放(yes/no)
 
 - 各浏览器平台
 

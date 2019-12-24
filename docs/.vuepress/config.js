@@ -8,9 +8,9 @@ module.exports = {
     repo: 'heiyelin/front-end-wiki',
     nav: [
       { text: '首页', link: '/' },
-      { text: '指南', link: '/guide/' },
+      { text: '基础', link: '/guide/' },
       { text: '进阶', link: '/advance/' },
-      { text: '工具与运维', link: '/dev/' },
+      { text: '全栈', link: '/dev/' },
       { text: '扩展', link: '/refer/' },
     ],
     sidebar: {
@@ -38,25 +38,34 @@ module.exports = {
             'js/high-order-function',
           ],
         },
+        {
+          title: '数据结构',
+          children: [
+            'data-structures/Stack',
+            'data-structures/Queue',
+            'data-structures/LinkedList',
+            'data-structures/Set',
+            'data-structures/Dictionary',
+            'data-structures/HashTable',
+            'data-structures/Tree',
+            'data-structures/Graph',
+          ],
+        },
+        {
+          title: '算法',
+          children: ['algorithms/sort/'],
+        },
       ],
       '/advance/': [
         {
-          title: '进阶',
+          title: '深入',
           collapsable: false,
-          children: ['browser', 'performance', 'design-pattern'],
+          children: ['browser', 'performance'],
         },
         {
-          title: '数据结构与算法',
-          children: [
-            'data-structure/Stack',
-            'data-structure/Queue',
-            'data-structure/LinkedList',
-            'data-structure/Set',
-            'data-structure/Dictionary',
-            'data-structure/HashTable',
-            'data-structure/Tree',
-            'data-structure/Graph',
-          ],
+          title: 'Node.js',
+          collapsable: false,
+          children: ['nodejs/'],
         },
       ],
       '/dev/': [
