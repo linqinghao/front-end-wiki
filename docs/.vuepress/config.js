@@ -18,7 +18,7 @@ module.exports = {
         {
           title: 'HTML',
           collapsable: false,
-          children: ['html/introduce'],
+          children: ['html/introduce', 'html/web-storage'],
         },
         {
           title: 'CSS',
@@ -30,7 +30,6 @@ module.exports = {
             'js/variables-and-types',
             'js/prototype',
             'js/scope-and-closure',
-            'js/js-run-mechanism',
             'js/grammar-and-api',
             'js/generator',
             'js/promise',
@@ -60,7 +59,7 @@ module.exports = {
         {
           title: '深入',
           collapsable: false,
-          children: ['browser', 'performance'],
+          children: ['web/dom', 'web/browser', 'web/performance', 'web/js-run-mechanism'],
         },
         {
           title: 'Node.js',
