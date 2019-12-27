@@ -65,6 +65,7 @@ module.exports = {
             'web/browser-working-principle',
             'web/performance',
             'web/js-run-mechanism',
+            'web/react-concept',
           ],
         },
         {
