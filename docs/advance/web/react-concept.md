@@ -632,3 +632,26 @@ function Example() {
 - 自定义 Hook 是一个函数，其名称以 “use” 开头，函数内部可以调用其他的 Hook。
 
 - 使用相同的 Hook 不会共享 state
+
+## 性能优化
+
+1. 构建优化
+
+- 使用生产版本的 react。
+
+2. 避免重新渲染
+
+- 如果组件当前与之前 props 或者 state 没有变化时，可以使用 `shouldComponentUpdate()` 返回 `false` 来跳过整个渲染过程。
+- 使用 React.PureComponent
+
+3. 不可变数据
+
+- 每次更新 state 时，总是返回一个新的 state。
+- 使用 immutable.js
+
+4. 事件绑定
+
+- 避免在 `render` 方法中使用 bind 绑定事件
+- 尽量使用箭头函数绑定事件
+
+5. 尽量使用函数组件
