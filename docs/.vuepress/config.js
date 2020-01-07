@@ -59,7 +59,14 @@ module.exports = {
         {
           title: '深入',
           collapsable: false,
-          children: ['web/dom', 'web/browser', 'web/performance', 'web/js-run-mechanism'],
+          children: [
+            'web/dom',
+            'web/browser',
+            'web/browser-working-principle',
+            'web/performance',
+            'web/js-run-mechanism',
+            'web/react-concept',
+          ],
         },
         {
           title: 'Node.js',
