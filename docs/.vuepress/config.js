@@ -30,7 +30,6 @@ module.exports = {
             'js/variables-and-types',
             'js/prototype',
             'js/scope-and-closure',
-            'js/grammar-and-api',
             'js/generator',
             'js/promise',
             'js/async',

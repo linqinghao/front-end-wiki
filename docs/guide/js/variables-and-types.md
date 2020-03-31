@@ -1,12 +1,12 @@
 # 变量与类型
 
-## js 变量在内存中的存储形式
+## 一、JS 变量在内存中的存储形式
 
-在 js 中，变量分为**基本类型**和**引用类型**。基本类型是保存在栈内存中的简单数据段，它们的值都有**固定的大小**，保存在**栈空间**，通过**按值访问**。引用类型是保存在堆内存中的对象，**值大小不固定**，栈内存中存放的该对象的访问地址指向堆内存中的对象，js 中不允许直接访问堆内存中的为止。因此操作对象时，实际操作对象的引用，
+在 JS 中，变量分为**基本类型**和**引用类型**。基本类型是保存在栈内存中的简单数据段，它们的值都有**固定的大小**，保存在**栈空间**，通过**按值访问**。引用类型是保存在堆内存中的对象，**值大小不固定**，栈内存中存放的该对象的访问地址指向堆内存中的对象，JS 中不允许直接访问堆内存中的为位置。因此操作对象时，实际操作对象的引用。
 
-## js 的数据类型
+## 二、JS 的数据类型
 
-js 有 7 种数据类型：
+Javascript 有 8 种数据类型：
 
 - `number` 类型：整数或浮点数。依据 IEEE 754 标准，使用的是 64 位双精度浮点数存储。
 - `string` 字符串：由一组 UTF16 编码组成，范围在 0~65536(U+0000 ~U+FFFF)之间。
@@ -15,13 +15,14 @@ js 有 7 种数据类型：
 - `undefined`: 表示未定义。不是保留字，内层作用域可以被覆写。
 - `symbol`: 用于唯一的标识符。
 - `object` 对象：一般是键值对的形式。
+- `BigInt`：可以表示任意大的整数。
 
 ::: tip 提示
 `function` 是一种数据类型吗？
 根据 spec 规范，它不是。虽然 `typeof function() {}; // function`，但是`typeof`是一个运算符，其返回值不能作为 js 类型系统的依据。`function`比较特殊，它同样具有`object`的特性。
 :::
 
-## 基本类型的拆箱与装箱操作
+## 三、基本类型的拆箱与装箱操作
 
 ### **装箱**
 
@@ -50,23 +51,23 @@ var str = new String('alin');
 
 显式装箱可以对 `new` 出来的对象进行属性和方法的添加。
 
-因为通过`new`操作符创建的引用类型的实例，在执行流离开当前作用域之间会一直保留在内存中。
+因为通过 `new` 操作符创建的引用类型的实例，在执行流离开当前作用域之间会一直保留在内存中。
 
 ### **拆箱**
 
-拆箱，是指把引用类型转换为基本类型。通过引用类型的 `valueOf()` 和 `toString`方法实现。
+拆箱，是指把引用类型转换为基本类型。通过引用类型的 `valueOf()` 和 `toString` 方法实现。
 
 ::: tip 提示
-在 js 标准中，规定了 `ToPrimitive`方法，它是对象类型到基本类型转换的实现者。
+在 Javascript 标准中，规定了 `ToPrimitive` 方法，它是对象类型到基本类型转换的实现者。
 :::
 
-对象到 String 和 Number 的转换遵循“先拆箱后转换”的规则。
+对象到 `String` 和 `Number` 的转换遵循“先拆箱后转换”的规则。
 
 「拆箱转换」的调用规则及顺序如下：
 
-1. 检查对象是否有用户定义的`[Symcol.toPrimitive]`方法，如果有，直接调用。
-2. 如果没有，执行原函数内部的`ToPrimitive`，然后判断传入`hint`值，如果其值为 string, 顺序调用对象的 `toString` 和 `valueOf` 方法（若 `toString` 方法返回一个基本类型值，则返回，终止运算，否则继续调用 `valueOf` 方法）。
-3. 如果传入的 `hint`值不为 string，则可能为 `number` 或者 `default`，均会顺序调用对象的 `valueOf` 和 `toString` 方法（其中 `valueOF` 方法一定会执行，若返回基本类型值，则返回并终止运算，否则继续调用 `toString` 方法）。
+1. 检查对象是否有用户定义的 `[Symcol.toPrimitive]` 方法，如果有，直接调用。
+2. 如果没有，执行原函数内部的 `ToPrimitive`，然后判断传入 `hint` 值，如果其值为 `string`, 顺序调用对象的 `toString` 和 `valueOf` 方法（若 `toString` 方法返回一个基本类型值，则返回，终止运算，否则继续调用 `valueOf` 方法）。
+3. 如果传入的 `hint` 值不为 `string`，则可能为 `number` 或者 `default`，均会顺序调用对象的 `valueOf` 和 `toString` 方法（其中 `valueOf` 方法一定会执行，若返回基本类型值，则返回并终止运算，否则继续调用 `toString` 方法）。
 
 ```js
 const b = {
@@ -98,13 +99,13 @@ b * 1; // Output: hint number
 
 - `string`: 当一个操作期望一个字符串时
 - `number`: 当一操作期望一个数字时
-- `default`: 少数情况下，当操作者不确定期望的类型时，比如一个 `+` 运算符可用于字符串连接或者数字相加时，或者当一个对象用`==`与一个字符串、数字进行比较时。
+- `default`: 少数情况下，当操作者不确定期望的类型时，比如一个 `+` 运算符可用于字符串连接或者数字相加时，或者当一个对象用 `==` 与一个字符串、数字进行比较时。
 
 ::: tip 提示
-在实践中，为了记录和调试目的，仅实现`object.toString()`作为“全捕获”方法通常就够了，这样所有转换都能返回同一种“人类可读”的对象表达方式。
+在实践中，为了记录和调试目的，仅实现 `object.toString()` 作为“全捕获”方法通常就够了，这样所有转换都能返回同一种“人类可读”的对象表达方式。
 :::
 
-## null 与 undefined 的区别
+## 四、null 与 undefined 的区别
 
 事实上，两者在使用中并无多大的区别。
 
@@ -113,21 +114,21 @@ null == undefined; // Output: true
 null === undefined; // Output: false
 ```
 
-在相等性检查中，两者是相等的。两者转换为布尔值都是`false`。
+在相等性检查中，两者是相等的。两者转换为布尔值都是 `false`。
 
 1. null
 
-`null`表示空值。在内存里表示的就是，栈中的变量没有指向堆中的内存对象。当一个对象被赋值了 `null` 以后，原来的对象在内存中就处于游离状态，GC 会择机回收该对象并释放内存。
+`null` 表示空值。在内存里表示的就是，栈中的变量没有指向堆中的内存对象。当一个对象被赋值了 `null` 以后，原来的对象在内存中就处于游离状态，GC 会择机回收该对象并释放内存。
 
 ::: tip 提示
 `typeof null == 'object'`?
 
-`null` 有属于自己的类型 Null，而不属于 Object 类型，`typeof` 之所以会判定为 Object 类型，是因为 JavaScript 数据类型在底层都是以二进制的形式表示的，二进制的前三位为 0 会被 `typeof` 判断为对象类型，而 `null` 的二进制位恰好都是 0 ，因此，`null` 被误判断为 Object 类型。
+`null` 有属于自己的类型 `Null`，而不属于 `Object` 类型，`typeof` 之所以会判定为 Object 类型，是因为 JavaScript 数据类型在底层都是以二进制的形式表示的，二进制的前三位为 0 会被 `typeof` 判断为对象类型，而 `null` 的二进制位恰好都是 0 ，因此，`null` 被误判断为 Object 类型。
 :::
 
 2. undefined
 
-`undefined`表示未定义的原始值。可以看做一个变量的原始状态。下面的这些场景，都会是`undefined`。
+`undefined` 表示未定义的原始值。可以看做一个变量的原始状态。下面的这些场景，都会是 `undefined`。
 
 - 变量被声明，但没有被赋值
 - 函数定义了形参，但没有传递实参
@@ -137,8 +138,8 @@ null === undefined; // Output: false
 
 3. 区别
 
-- `null`表示空值；`undefined`表示未定义的原始值。
-- `null`转换为 number 类型时为 0；`undefined`则是 NaN。
+- `null` 表示空值；`undefined` 表示未定义的原始值。
+- `null` 转换为 Number 类型时为 0；`undefined`则是 NaN。
 - 两者不全等。
 
 ```js
@@ -154,12 +155,12 @@ null == 0; // false
 null >= 0; // true
 ```
 
-这是因为相等性检测`==`和普通比较运算符` >``<``>=``<= `的逻辑是相互独立的，进行值的比较时，`null`会被转化为 0，另一方面`undefined`和`null`在相等性检测中不会进行任何的类型转换，它们有自己独立的比较规则，所以它们除了互等外，不会等于其他任何的值。
+这是因为相等性检测`==`和普通比较运算符 `>` `<` `>=` `<=` 的逻辑是相互独立的，进行值的比较时，`null` 会被转化为 0，另一方面 `undefined` 和 `null` 在相等性检测中不会进行任何的类型转换，它们有自己独立的比较规则，所以它们除了互等外，不会等于其他任何的值。
 :::
 
-## js 中判断数据类型的几种方式
+## 五、JS 中判断数据类型的几种方式
 
-在 js 中，常用的数据判断方法可以用`typeof`，`instanceOf`，`constructor`，`Object.protoType.toString.call()`这四种方法。
+在 JS 中，常用的数据判断方法可以用`typeof`，`instanceOf`，`constructor`，`Object.protoType.toString.call()`这四种方法。
 
 1. `typeof`
 
@@ -200,11 +201,11 @@ new Person instanceOf Person; // true
 new Date() instanceOf Object; //true
 ```
 
-`instanceOf`只能用判断两个对象是否是实例关系，无法判断一个对象实例具体属于哪个类型。其原理是利用原型链，如果在原型链上查找到一致的原型，就会返回真值。
+`instanceOf` 只能用判断两个对象是否是实例关系，无法判断一个对象实例具体属于哪个类型。其原理是利用原型链，如果在原型链上查找到一致的原型，就会返回真值。
 
 3. `constructor`
 
-当一个函数 F 被定义时，js 引擎为 F 添加了 `prototype` 原型，然后再在 `prototype`上添加一个`constructor`的属性，并让其指向 F 的引用。
+当一个函数 F 被定义时，js 引擎为 F 添加了 `prototype` 原型，然后再在 `prototype` 上添加一个 `constructor` 的属性，并让其指向 F 的引用。
 
 例子：
 
@@ -218,12 +219,12 @@ document.constructor == HTMLDocument; // ture
 
 存在问题：
 
-- `null`和`undefined`是无效的对象，因此不存在`constructor`。
-- 函数的`construcor`是不稳定的，可以重写`prototype`，原有`constructor`就会丢失。
+- `null` 和 `undefined` 是无效的对象，因此不存在 `constructor`。
+- 函数的 `construcor` 是不稳定的，可以重写 `prototype`，原有 `constructor` 就会丢失。
 
 4. `toString`方法
 
-`toString`是`Object`的原型方法，调用该方法，默认返回当前对象的`[[class]]`。
+`toString` 是 `Object` 的原型方法，调用该方法，默认返回当前对象的 `[[class]]`。
 
 例子：
 
@@ -242,7 +243,7 @@ Object.prototype.toString.call(new Error()); // "[Object Error]"
 
 这种方式是最为通用的，能够很好的判断 js 中的数据类型。
 
-## 隐式转换
+## 六、隐式转换
 
 由于 Javascript 是一门弱类型语言，因此在不同类型的变量之间相互运算时常常会发生**隐式转换**。Javascript 中的隐式转换常用的主要有三种： `ToPrimitive`，`ToNumber`，`ToString`。
 
@@ -258,7 +259,7 @@ Object.prototype.toString.call(new Error()); // "[Object Error]"
 
 ![隐式转换-ToString-2019-12-17.png](https://allin-bucket.oss-cn-beijing.aliyuncs.com/blog/隐式转换-ToString-2019-12-17.png?x-oss-process=style/alin)
 
-## 精度缺失及解决办法
+## 七、精度缺失及解决办法
 
 ### 双精度浮点数
 
@@ -278,7 +279,7 @@ V = (-1)^S * M * 2 ^ E
 - M：指有效位数，1 < M < 2
 - E：指数位，阶数 = 指数 + 偏置量
 
-## 解决精度缺失的方法
+### 解决精度缺失的方法
 
 1. 类库
 
@@ -303,50 +304,19 @@ function toFixed(num, s) {
 
 把小数放大为整数（乘），进行算术运算，再缩小为小数（除）。
 
-## Javascript 的内存管理与内存泄漏
-
-### 内存
-
-内存从物理意义上是指由一系列晶体管构成的可以存储数据的回路，从逻辑的角度我们可以将内存看作是一个巨大的可读写的比特数组。
-
-它存储着我们编写的代码以及我们在代码中定义的各类变量。对于很多静态类型编程语言来说，在代码进入编译阶段时编译器会根据变量声明时指定的类型提前申请分配给该变量的内存（比如，整型变量对应的是 4 个字节，浮点数对应 8 个字节）。
-
-内存区域分为**栈空间**和**堆空间**。
-
-- 栈空间：在编译阶段就能确定内存大小的变量，FILO
-- 堆空间：变量占用内存大小是在运行时决定的，动态分配的。
-
-### 内存的生命周期
-
-分配内存 -> 使用内存 -> 释放内存
-
-### 内存回收
-
-1. 引用计数
-2. 标记清除算法
-
-标记清除判断某个对象是否可以被回收的标志是该对象不能再被访问到。其执行过程总共分为三步：
-
-- a. 确定根对象：在 javascript 中根对象主要是指全局对象，比如浏览器环境中的 window，node.js 中的 global。
-- b. 从根对象开始遍历子属性，并将这些属性变量标记为活跃类型，通过根对象- 不能访问到的就标记为可回收类型。
-- c. 根据第二步标记出来的结果进行内存回收
-
-### 内存泄漏
-
-内存泄漏是指未能被垃圾回收机制回收，导致这块内存区域被白白浪费的。
-
-常见的内存泄漏：
-
-1. 全局变量
+## 八、instanceOf 实现原理
 
 ```js
-function foo() {
-  bar = 'global variable';
+function instanceof(left, right) {
+  // 获得类型的原型
+  let prototype = right.prototype;
+  // 获得对象的原型
+  left = left.__proto__;
+  // 判断对象的类型是否等于类型的原型
+  while (true) {
+    if (left === null) return false;
+    if (prototype === left) return true;
+    left = left.__proto__;
+  }
 }
 ```
-
-2. 闭包
-
-内部函数可以访问到其外部作用域中的变量。
-
-3. `DOM`引用
