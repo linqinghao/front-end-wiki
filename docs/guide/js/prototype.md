@@ -90,6 +90,182 @@ function objectFactory() {
 
 ## 三、实现继承的方式以及优缺点
 
+1. 原型链继承
+
+```js
+function Parent() {
+  this.name = 'kevin';
+}
+
+Parent.prototype.getName = function() {
+  console.log(this.name);
+};
+
+function Child() {}
+
+Child.prototype = new Parent();
+
+var child1 = new Child();
+
+console.log(child1.getName()); // kevin
+```
+
+问题：
+
+- 引用类型的属性被所有实例共享。
+- 在创建 Child 的实例时，无法向 Parent 传参。
+
+2. 经典继承（借用构造函数）
+
+```js
+function Parent() {
+  this.names = ['kevin', 'daisy'];
+}
+
+function Child() {
+  Parent.call(this);
+}
+
+var child1 = new Child();
+
+child1.names.push('yayu');
+
+console.log(child1.names); // ["kevin", "daisy", "yayu"]
+
+var child2 = new Child();
+
+console.log(child2.names); // ["kevin", "daisy"]
+```
+
+优点：
+
+- 避免了引用类型的属性被所有实例共享。
+- 可以在 Child 中向 Parent 传参。
+
+缺点：
+
+方法都在构造函数中定义，每次创建实例都会创建一遍方法。
+
+3. 组合继承
+
+```js
+function Parent(name) {
+  this.name = name;
+  this.colors = ['red', 'blue', 'green'];
+}
+
+Parent.prototype.getName = function() {
+  console.log(this.name);
+};
+
+function Child(name, age) {
+  Parent.call(this, name);
+
+  this.age = age;
+}
+
+Child.prototype = new Parent();
+Child.prototype.constructor = Child;
+
+var child1 = new Child('kevin', '18');
+
+child1.colors.push('black');
+
+console.log(child1.name); // kevin
+console.log(child1.age); // 18
+console.log(child1.colors); // ["red", "blue", "green", "black"]
+
+var child2 = new Child('daisy', '20');
+
+console.log(child2.name); // daisy
+console.log(child2.age); // 20
+console.log(child2.colors); // ["red", "blue", "green"]
+```
+
+优点：融合原型链继承和构造函数的优点，是 JavaScript 中最常用的继承模式。
+
+4. 原型式继承
+
+```js
+function createObj(o) {
+  function F() {}
+  F.prototype = o;
+  return new F();
+}
+```
+
+`Object.create`的模拟实现，将传入的对象作为创建的对象的原型。
+
+缺点：
+
+包含引用类型的属性值始终都会共享相应的值，这点跟原型链继承一样。
+
+5. 寄生式继承
+
+创建一个仅用于封装继承过程的函数，该函数在内部以某种形式来做增强对象，最后返回对象。
+
+```js
+function createObj(o) {
+  var clone = Object.create(o);
+  clone.sayName = function() {
+    console.log('hi');
+  };
+  return clone;
+}
+```
+
+缺点：跟借用构造函数模式一样，每次创建对象都会创建一遍方法。
+
+6. 寄生组合式继承
+
+```js
+function Parent(name) {
+  this.name = name;
+  this.colors = ['red', 'blue', 'green'];
+}
+
+Parent.prototype.getName = function() {
+  console.log(this.name);
+};
+
+function Child(name, age) {
+  Parent.call(this, name);
+  this.age = age;
+}
+
+// 关键的三步
+var F = function() {};
+
+F.prototype = Parent.prototype;
+
+Child.prototype = new F();
+
+var child1 = new Child('kevin', '18');
+
+console.log(child1);
+```
+
+最后我们封装一下这个继承方法：
+
+```js
+function object(o) {
+  function F() {}
+  F.prototype = o;
+  return new F();
+}
+
+function prototype(child, parent) {
+  var prototype = object(parent.prototype);
+  prototype.constructor = child;
+  child.prototype = prototype;
+}
+
+// 当我们使用的时候：
+prototype(Child, Parent);
+```
+
+这种方式的高效率体现它只调用了一次 `Parent` 构造函数，并且因此避免了在 `Parent.prototype` 上面创建不必要的、多余的属性。与此同时，原型链还能保持不变；因此，还能够正常使用 `instanceof` 和 `isPrototypeOf`。开发人员普遍认为寄生组合式继承是引用类型最理想的继承范式。
+
 ## 四、ES6 中的 Class 以及继承的底层实现原理
 
 在面向对象的编程中，class 是用于创建对象的可扩展的程序代码模版，它为对象提供了状态（成员变量）的初始值和行为（成员函数和方法）的实现。
@@ -115,7 +291,7 @@ class Person {
 1. 类方法不可枚举。
 1. 类默认使用 `"use strict"`。在类构造函数中的所有方法自动使用严格模式。
 
-### 2. ES6 类的实现:
+### 2. ES6 类的实现
 
 ```js
 class Parent {
@@ -220,9 +396,11 @@ c.coding();
 1. 将 `Child.prototype.__proto__` 指向了 `Parent.prototype`，实现公有属性和方法的继承。
 2. 将 `Child.__proto__` 指向了 `Parent` ，即 `B.[[Prototype]] = A`，实现了静态属性和方法的继承。
 
-::: tip 注意
+:::tip 注意
 继承类的构造函数必须调用 `super(...)`，并且要在 `this` 之前调用。
+
 这是因为在继承类中，相应的构造函数会被标记为特殊的内部属性 `[[ConstructorKind]]:"derived"`。当一个普通构造函数执行时，它会创建一个空对象作为 `this` 并继续执行。
+
 但是当继承的构造函数执行时，它并不会做这件事。它期望父类的构造函数来完成这项工作。因此，如果我们构建了我们自己的构造函数，我们必须调用 `super`，因为如果不这样的话 `this` 指向的对象不会被创建。并且我们会收到一个报错。
 :::
 

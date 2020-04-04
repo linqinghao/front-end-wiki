@@ -1,4 +1,4 @@
-# async/await
+# async/await 原理
 
 ## 一、async
 
@@ -8,7 +8,7 @@ async 函数对 Generator 函数的改进，体现在一下四点：
 
 - 内置执行器。
 - 更好的语义。
-- 更广的适用性：`yield`后面只能是 Thunk 函数或者 Promise 对象，而 `await`命令后面可以是 Promise 对象或者原始类型值（但会自动转换成 `resolved` 的 Promise 对象）。
+- 更广的适用性：`yield` 后面只能是 Thunk 函数或者 Promise 对象，而 `await` 命令后面可以是 Promise 对象或者原始类型值（但会自动转换成 `resolved` 的 Promise 对象）。
 - 返回值是 Promise。
 
 ## 二、错误处理
@@ -48,7 +48,7 @@ function fn(args) {
 }
 ```
 
-所有的 async 函数都可以写成上面的第二种形式，其中的`spawn`函数就是自动执行器。
+所有的 async 函数都可以写成上面的第二种形式，其中的 `spawn` 函数就是自动执行器。
 
 ```js
 function spawn(genF) {
