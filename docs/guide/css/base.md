@@ -26,7 +26,7 @@
 | .classname                           | 类选择器                                         | 基于类属性的值来选择元素                                                                       |
 | #idname                              | id 选择器                                        | 这种基本选择器会选择所有 id 属性与之匹配的元素。需要注意的是一个文档中每个 id 都应该是唯一的。 |
 | \* ns                                | \* \*                                            | \*                                                                                             | 通用选择器 | 选择所有节点 |
-| [attr][attr=value] [attr~=value]attr | =value] [attr^=value][attr$=value] [attr*=value] | 属性选择器                                                                                     | 根据元素的属性来进行选择 |
+| [attr][attr=value] [attr~=value][attr\|=value] [attr^=value][attr$=value] [attr*=value] | 属性选择器                                                                                     | 根据元素的属性来进行选择 |
 
 组合选择器：
 
@@ -182,7 +182,7 @@ p {
 
 ![css-sup-demo1-2019-12-7.png](https://allin-bucket.oss-cn-beijing.aliyuncs.com/blog/css-sup-demo1-2019-12-7.png?x-oss-process=style/alin)
 
-从上面可以看出，我们给两个 p 元素都设置`margin`,但中间的间距却发生了折叠。然后举个 BFC 的例子：
+从上面可以看出，我们给两个 p 元素都设置`margin`，但中间的间距却发生了折叠。然后举个 BFC 的例子：
 
 ```css
 /* css */
@@ -204,7 +204,7 @@ p {
 
 ![css-sup-demo2-2019-12-7.png](https://allin-bucket.oss-cn-beijing.aliyuncs.com/blog/css-sup-demo2-2019-12-7.png?x-oss-process=style/alin)
 
-从上面可以看出，我们为每个 div 元素设置`overflow`的值为`hidden`,产生一个块级格式上下文，因为外边距不会相互重叠。
+从上面可以看出，我们为每个 div 元素设置`overflow`的值为`hidden`，产生一个块级格式上下文，因此外边距不会相互重叠。
 
 2. 可以包含浮动的元素
 
