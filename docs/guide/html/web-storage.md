@@ -1,6 +1,6 @@
 # 浏览器本地存储
 
-## Cookie
+## 一、Cookie
 
 ### 介绍
 
@@ -25,7 +25,7 @@ Cookie 作为状态存储，有很多缺陷：
 | secure    | 只能在协议为 HTTPS 的请求中携带                                |
 | same-site | 规定浏览器不能在跨域请求中携带 Cookie，减少 CSRF 攻击          |
 
-## localStorage
+## 二、localStorage
 
 ### 介绍
 
@@ -49,7 +49,7 @@ locaStorage.removeItem('name');
 localStorage.clear();
 ```
 
-## sessionStorage
+## 三、sessionStorage
 
 ### 介绍
 
@@ -73,7 +73,7 @@ sessionStorage.clear();
 - 可以用它对表单信息进行维护，将表单信息存储在里面，可以保证页面即使刷新也不会让之前的表单信息丢失。
 - 可以用它存储本次浏览记录。如果关闭页面后不需要这些记录，用 sessionStorage 就再合适不过了。
 
-## IndexedDB
+## 四、IndexedDB
 
 ### 介绍
 

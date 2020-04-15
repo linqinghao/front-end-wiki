@@ -1,19 +1,19 @@
 # Promise 原理与实现
 
-## Promise
+## 一、Promise 原理
 
-### 一、介绍
+### 介绍
 
 Promise 是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大。
 
 传统的回调函数方案存在一些缺点，比如回调地狱等，`Promise`则用于解决这种无限嵌套的异步回调编程方式。
 
-### 二、特点
+### 特点
 
 - 对象的状态不受外界影响。`Promise` 对象代表一个异步操作，有三种状态：`pending`（进行中）、`fulfilled`（已成功）和`rejected`（已失败）。只有异步操作的结果，可以决定当前是哪一种状态，任何其他操作都无法改变这个状态。这也是 `Promise` 这个名字的由来，它的英语意思就是“承诺”，表示其他手段无法改变。
 - 一旦状态改变，就不会再变，任何时候都可以得到这个结果。
 
-### 三、Promise 对象
+### Promise 对象
 
 1. 基本语法：
 
@@ -30,12 +30,12 @@ let promise = new Promise(function(resolve, reject) {
 
 2. `Promise` 内部有两个属性
 
-- state: 最初是`pending`，然后改为`fulfilled`或者`rejected`
-- result： 任意值，最初为`undefined`
+- state: 最初是 `pending`，然后改为 `fulfilled` 或者 `rejected`
+- result： 任意值，最初为 `undefined`
 
-**当 `Promise` 被创建时， 它会被立即调用**
+**当 Promise 被创建时， 它会被立即调用**
 
-### 四、Promise 方法
+### Promise 方法
 
 1. `then()`
 
@@ -43,11 +43,11 @@ let promise = new Promise(function(resolve, reject) {
 p.then(onFulfilled[, onRejected]);
 ```
 
-`then`方法作用是为 `Promise` 实例添加状态改变时的回调函数。其可以接收两个可选参数。
+`then`方法作用是为 Promise 实例添加状态改变时的回调函数。其可以接收两个可选参数。
 
-- `onFilfilled`: 当`Promise`变成接受状态（fulfilled）时调用的函数。该函数有一个参数，即接受的最终结果。
+- `onFilfilled`: 当 Promise 变成接受状态（fulfilled）时调用的函数。该函数有一个参数，即接受的最终结果。
 
-- `onRejected`: 当 `Promise`当 Promise 变成接受状态或拒绝状态（rejected）时调用的函数。该函数有一个参数，即拒绝的原因。
+- `onRejected`: 当 Promise 变成接受状态或拒绝状态（rejected）时调用的函数。该函数有一个参数，即拒绝的原因。
 
 2. `catch()`
 
@@ -55,11 +55,11 @@ p.then(onFulfilled[, onRejected]);
 p.catch(onRejected);
 ```
 
-`catch()` 方法返回一个`Promise`，并且处理拒绝的情况。它的行为与调用`Promise.prototype.then(undefined, onRejected)`相同。
+`catch()` 方法返回一个 Promise，并且处理拒绝的情况。它的行为与调用 `Promise.prototype.then(undefined, onRejected)`相同。
 
 3. `finally()`-ES2018 新增
 
-### 五、Promise 链
+### Promise 链
 
 1. 链式调用
 
@@ -85,7 +85,7 @@ new Promise(function(resolve, reject) {
   });
 ```
 
-`Promise`链看起来就像上面那样，由于 `p.then()`会返回`Promise`实例，所以可以使用类似`p.then().then().then()...`的`Promise`链来组织代码。
+Promise 链看起来就像上面那样，由于 `p.then()` 会返回 Promise 实例，所以可以使用类似 `p.then().then().then()...` 的 Promise 链来组织代码。
 
 2. `Thenables`
 
@@ -112,16 +112,16 @@ new Promise(resolve => resolve(1))
   .then(alert); // 1000 ms 后显示 2
 ```
 
-### 六、Promise API
+### Promise API
 
 1. Promise.all
 2. Promise.race
 3. Promise.allSettled
 4. Promise.try
 
-### 七、Promisification / Promisify
+### Promisification / Promisify
 
-`Promisification`: 它指将一个接受回调的函数转换为一个返回 `promise` 的函数。
+`Promisification`: 它指将一个接受回调的函数转换为一个返回 promise 的函数。
 
 ```js
 function promisify(original) {
@@ -139,18 +139,18 @@ function promisify(original) {
 }
 ```
 
-### 八、Promise 缺点
+### Promise 缺点
 
-1. 无法取消`Promise`
+1. 无法取消 Promise
    一旦新建它就会立即执行，无法中途取消。
 
 2. 错误被吃掉
-   如果不设置回调函数，`Promise`内部抛出的错误，不会反应到外部、
+   如果不设置回调函数，Promise 内部抛出的错误，不会反应到外部、
 
 3. 无法得知 `pending` 状态
    当处于 `pending` 状态时，无法得知目前进展到哪一个阶段（刚刚开始还是即将完成）。
 
-## Promise 模拟实现
+## 二、Promise 模拟实现
 
 1. Promise 构造函数
 
@@ -211,13 +211,13 @@ Promise.prototype.then = function(onFulfilled, onRejected) {
         };
 
   let self = this;
-  /*由于要实现链式调用，所以每次执行then方法的时候都会返回一个新的Promise实例*/
+  /*由于要实现链式调用，所以每次执行 then 方法的时候都会返回一个新的 Promise 实例*/
   let promise2;
   if (self.status === 'fulfilled') {
     promise2 = new Promise(function(resolve, reject) {
       setTimeout(function() {
         try {
-          /*将onFulfilled函数执行的结果resolve掉*/
+          /*将 onFulfilled 函数执行的结果 resolve 掉*/
           let x = onFulfilled(self.value);
           resolvePromise(promise2, x, resolve, reject);
         } catch (e) {
@@ -231,7 +231,7 @@ Promise.prototype.then = function(onFulfilled, onRejected) {
     promise2 = new Promise(function(resolve, reject) {
       setTimeout(function() {
         try {
-          /*将onRejected函数执行的结果reject掉*/
+          /*将 onRejected 函数执行的结果 reject 掉*/
           let x = onRejected(self.value);
           resolvePromise(promise2, x, resolve, reject);
         } catch (e) {
