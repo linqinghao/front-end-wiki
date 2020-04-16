@@ -174,10 +174,12 @@ DOM 节点因为它们的类而具有不同的属性。例如，标记 `<a>` 相
 
 常见操作：
 
-```js
+```html
 <script>
-  let div = document.createElement('div'); div.className = "alert alert-success"; div.innerHTML = "
-  <strong>Hi there!</strong> You've read an important message."; document.body.appendChild(div);
+  let div = document.createElement('div');
+  div.className = 'alert alert-success';
+  div.innerHTML = "Hi there! You've read an important message.";
+  document.body.appendChild(div);
 </script>
 ```
 
