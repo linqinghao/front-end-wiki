@@ -301,6 +301,3 @@ overflow: hidden;
 ### 5. BFC 与 hasLayout
 
 除了使用 `overflow: hidden` 触发 BFC 外，还使用了一个 `*zomm: 1` 的属性，这是 IEhack ，因为 IE6-7 并不支持 W3C 的 BFC ，而是使用私有属性 hasLayout 。从表现上来说，hasLayout 跟 BFC 很相似，只是 hasLayout 自身存在很多问题，导致了 IE6-7 中一系列的 bug 。触发 hasLayout 的条件与触发 BFC 有些相似，推荐为元素设置 IE 特有的 CSS 属性 `zoom: 1` 触发 hasLayout ，zoom 用于设置或检索元素的缩放比例，值为“1”即使用元素的实际尺寸，使用 `zoom: 1` 既可以触发 hasLayout 又不会对元素造成其他影响，相对来说会更为方便。
-
-
-<Vssue title="Vssue" />

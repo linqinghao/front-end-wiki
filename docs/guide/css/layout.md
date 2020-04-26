@@ -9,7 +9,7 @@ CSS 页面布局技术允许我们拾取网页中的元素，并且控制它们�
 - 定位`postion`
 - 弹性布局`Flex`
 - 网格布局`Grid`
-- 表格布局
+- <del>表格布局（过时）</del>
 - 多列布局`column`
 
 ## 正常布局流
@@ -265,7 +265,5 @@ flex: <flex-grow> <flex-shrink> <flex-basis>;
 - 缺点是浏览器兼容性比较差，只能兼容到 IE9 及以上；
 
 ## Grid 网格布局
-
-## Table 表格布局
 
 ## 多列布局
